@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management</title>
+</head>
+<body>
+    <h1>Employee Management</h1>
+    <h2>List of Employees</h2>
+    <table id="employeeTable" border="1">
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th></th>
+        </tr>
+    </table>
+    <script>
+        function addEmployee() {
+            var employeeId = document.getElementById("employeeId").value;
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var age = document.getElementById("age").value;
+            var department = document.getElementById("department").value;
+
+            if (!employeeId || !firstName || !lastName || !age || !department) {
+                alert("Please fill in all the informations.");
+                return;
+            }
+
+            var table = document.getElementById("employeeTable");
+            for (var i = 1, row; row = table.rows[i]; i++) {
+                var existingEmployeeId = row.cells[0].innerText;
+                if (existingEmployeeId === employeeId) {
+                    alert("employee ID is already exists");
+                    return;
+                }
+            }
+
+            var newRow = table.insertRow(-1);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+
+            cell1.innerHTML = employeeId;
+            cell2.innerHTML = firstName;
+            cell3.innerHTML = lastName;
+            cell4.innerHTML = age;
+            cell5.innerHTML = department;
+            cell6.innerHTML = '<button onclick="removeEmployee(this)">Remove</button>';
+        
+        }
+        function removeemployee(button) {
+            var row = button.parentNode.parentNode; 
+            var table = row.parentNode; 
+            table.removeemployee(row.rowIndex); 
+        }
+
+
+
+
+    </script>
+    <h2>Add Employee</h2>
+    <table border="1">
+        <tr>
+            <th>Employee ID:</th>
+            <th><input type="text" id="employeeId"></th>
+        </tr>
+        <tr>
+            <th>First Name:</th>
+            <th><input type="text" id="firstName"></th>
+        </tr>
+        <tr> 
+            <th>Last Name:</th>
+            <th><input type="text" id="lastName"></tH>
+        </tr>
+        <tr> 
+            <th>Age:</th>
+            <th><input type="number" id="age" min="0" max="100"></th>
+        </tr>   
+        <tr> 
+            <th>Department:</th>
+            <th><input type="text" id="department"></th>
+         </tr>  
+         <tr> 
+    
+            <th><button onclick="addEmployee()">Add Employee</button></th>
+         </tr>  
+           
+       
+    </table>
+
+</body>
+</html>
